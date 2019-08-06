@@ -12,3 +12,17 @@ TRUNCATE "product";
 INSERT INTO "product" ("Id", "ProductName", "CreatedDate")
 VALUES (1, 'Mobile', '2019-08-02 16:59:04.772571+00'),
        (2, 'Laptop', '2019-08-02 16:59:16.698214+00');
+
+
+CREATE OR REPLACE FUNCTION get_productnames()
+    RETURNS TABLE
+            (
+                ProductName text
+            )
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT "ProductName" FROM "product";
+END;
+$$
+    LANGUAGE 'plpgsql';
